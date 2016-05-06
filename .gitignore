@@ -1,0 +1,4 @@
+# Ignore temp files and build files
+Build
+BuildTemp
+Temp
