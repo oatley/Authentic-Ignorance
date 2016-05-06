@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Main.cs" />
      <Compile Include="Assets\Scripts\controlLight.cs" />
      <Compile Include="Assets\Scripts\controlMenuItem.cs" />
+     <Compile Include="Assets\Scripts\guiButton.cs" />
      <Compile Include="Assets\controlMouse.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

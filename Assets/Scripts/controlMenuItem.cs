@@ -76,6 +76,7 @@ public class controlMenuItem : MonoBehaviour {
 		// Control what happens when you click stuff
 		if (menuItemTextMesh.GetComponent<TextMesh>().text == "New") {
 			print (menuItemTextMesh.GetComponent<TextMesh> ().text);
+			Application.LoadLevel("Level1");
 		}
 		else if (menuItemTextMesh.GetComponent<TextMesh>().text == "Show") {
 			print (menuItemTextMesh.GetComponent<TextMesh> ().text);
