@@ -16,6 +16,8 @@ public class guiButton : MonoBehaviour {
 
 	UnityEngine.UI.Button GUICardDraw;
 
+	GameObject runGameObject;
+
 
 	public void ClickMenu() {
 		OutputText = GameObject.Find("OutputText").GetComponent<Text>();
@@ -28,16 +30,20 @@ public class guiButton : MonoBehaviour {
 			Application.Quit ();
 		} else if (this.GetComponentInChildren<Text> ().text == "Menu") {
 			Application.LoadLevel ("Main");
+		} else if (this.GetComponentInChildren<Text> ().text == "New") {
+			Application.LoadLevel ("Level1");
 		} else if (this.GetComponentInChildren<Text> ().text == "Meow") {
 			OutputText.text = "MEEEEOOOOOOOOOOW\n";
 		}
 	}
 
+
 	public void discardCard() {
-		if (this.GetComponentInChildren<Text> ().text != "Draw Card" && this.GetComponentInChildren<Text> ().text != "Play Random Card") {
+		if (this.GetComponentInChildren<Text> ().text != "Draw Card" && this.GetComponentInChildren<Text> ().text != "Discard Hand") {
 			GUICardDraw = GameObject.Find ("GUICardDraw").GetComponent<Button> ();
 			GUICardDraw.interactable = true;
 			this.GetComponentInChildren<Text> ().text = "";
+			this.GetComponentInChildren<Button>().interactable = false;
 		}
 	}
 
@@ -49,9 +55,24 @@ public class guiButton : MonoBehaviour {
 
 		if (this.GetComponentInChildren<Text> ().text == "") {
 			OutputText.text = OutputText.text + "please draw a new card";
+		} else if (this.GetComponentInChildren<Text> ().text == "Draw Card") {
+			// Add new value to output text
+			OutputText.text = OutputText.text + this.GetComponentInChildren<Text> ().text.Replace ("\n", ",");
+		} else if (this.GetComponentInChildren<Text> ().text == "Discard Hand") {
+			// Add new value to output text
+			OutputText.text = OutputText.text + this.GetComponentInChildren<Text> ().text.Replace ("\n", ",");
+//		} else if (this.GetComponentInChildren<Text> ().text == "You Win!") {
+//				// Add new value to output text
+//				OutputText.text = OutputText.text + this.GetComponentInChildren<Text> ().text.Replace ("\n", ",");
+//		} else if (this.GetComponentInChildren<Text> ().text == "You Lose!") {
+//			// Add new value to output text
+//			OutputText.text = OutputText.text + this.GetComponentInChildren<Text> ().text.Replace ("\n", ",");
 		} else {
 			// Add new value to output text
 			OutputText.text = OutputText.text + this.GetComponentInChildren<Text> ().text.Replace ("\n", ",");
+			// Update player score
+			string[] CardInfo = Regex.Split(this.GetComponentInChildren<Text> ().text, "\n");
+			GameObject.Find ("runGameObject").GetComponent<runGame> ().ChangePlayerScore(int.Parse(CardInfo[2]));
 		}
 		// Split the value of the TextOutput and store in array
 		string[] OutputTextArray = Regex.Split(OutputText.text, "\n");
@@ -75,9 +96,13 @@ public class guiButton : MonoBehaviour {
 
 		// Discard the card you used
 		discardCard ();
-
+		GameObject.Find ("runGameObject").GetComponent<runGame> ().checkWin ();
+		//enemyTurn ();
 
 	}
+
+
+
 }
 
 

@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\cardGenerator.cs" />
      <Compile Include="Assets\Scripts\controlLight.cs" />
      <Compile Include="Assets\Scripts\controlMenuItem.cs" />
+     <Compile Include="Assets\Scripts\enemy.cs" />
      <Compile Include="Assets\Scripts\guiButton.cs" />
      <Compile Include="Assets\Scripts\outputText.cs" />
      <Compile Include="Assets\Scripts\runGame.cs" />
