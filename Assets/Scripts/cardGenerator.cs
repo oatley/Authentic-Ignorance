@@ -2,6 +2,8 @@
 using System.Collections;
 using System.IO;
 using System.Collections.Generic;
+using UnityEngine.UI;
+
 
 
 public class cardGenerator : MonoBehaviour {
@@ -14,6 +16,14 @@ public class cardGenerator : MonoBehaviour {
 	public int[] goodvalues = {-4,-3,1,2,3};
 	public int[] badvalues = {-2,-1,3,4,4};
 	public int[] neutralvalues = {-3,-2,2,3,3};
+
+	// GUICARDS
+	UnityEngine.UI.Text GUICard1;
+	UnityEngine.UI.Text GUICard2;
+	UnityEngine.UI.Text GUICard3;
+	UnityEngine.UI.Text GUICard4;
+	UnityEngine.UI.Text GUICard5;
+	UnityEngine.UI.Text GUICard6;
 
 
 	
@@ -41,27 +51,49 @@ public class cardGenerator : MonoBehaviour {
 			neutral.Add(line);
 		}
 		input_stream.Close( );
+
+		playerDrawHand ();
+
+
 	}
 
-	public void generateCard() {
+	public void playerDrawHand() {
+		GUICard1 = GameObject.Find ("GUICard1Text").GetComponent<Text> ();
+		GUICard1.text = generateCard ();
+		GUICard2 = GameObject.Find ("GUICard2Text").GetComponent<Text> ();
+		GUICard2.text = generateCard ();
+		GUICard3 = GameObject.Find ("GUICard3Text").GetComponent<Text> ();
+		GUICard3.text = generateCard ();
+		GUICard4 = GameObject.Find ("GUICard4Text").GetComponent<Text> ();
+		GUICard4.text = generateCard ();
+		GUICard5 = GameObject.Find ("GUICard5Text").GetComponent<Text> ();
+		GUICard5.text = generateCard ();
+		GUICard6 = GameObject.Find ("GUICard6Text").GetComponent<Text> ();
+		GUICard6.text = generateCard ();
+	}
+
+	public string generateCard() {
 		int cardalignment = new int();
 		int cardscore = new int ();
+		string entirecard;
 		cardalignment = Random.Range (1, 4);
 		cardscore = Random.Range (0, 4);
 
 
 		if (cardalignment == 1) { // good
 			string card = good [Random.Range (0, good.Count)]; // card name
-			print (card + " good " + goodvalues [cardscore].ToString ()); // string = name alignment score
+			entirecard = card + "\ngood\n" + goodvalues [cardscore].ToString (); // string = name alignment score
 		} else if (cardalignment == 2) { // bad
 			string card = bad [Random.Range (0, bad.Count)]; // card name
-			print (card + " bad " + badvalues [cardscore].ToString ()); // string = name alignment score
+			entirecard = card + "\nbad\n" + badvalues [cardscore].ToString (); // string = name alignment score
 		} else if (cardalignment == 3) { // neutral
 			string card = neutral [Random.Range (0, neutral.Count)]; // card name
-			print (card + " neutral " + neutralvalues [cardscore].ToString ()); // string = name alignment score
+			entirecard = card + "\nneutral\n" + neutralvalues [cardscore].ToString (); // string = name alignment score
 		} else {
-			print("meow good 20");
+			entirecard = "meow good 20";
 		}
+		print (entirecard);
+		return entirecard;
 
 	}
 

@@ -23,20 +23,28 @@ public class guiButton : MonoBehaviour {
 		}
 	}
 
+	public void discardCard() {
+		this.GetComponentInChildren<Text> ().text = "";
+	}
+
 	public void ClickCard(){
+
 		print ("I want the money, give me the money");
-		OutputText = GameObject.Find("OutputText").GetComponent<Text>();
+		OutputText = GameObject.Find ("OutputText").GetComponent<Text> ();
 
-		// Add new value to output text
-		OutputText.text = OutputText.text + this.GetComponentInChildren<Text> ().text.Replace ("\n", ",");
-
+		if (this.GetComponentInChildren<Text> ().text == "") {
+			OutputText.text = OutputText.text + "please draw a new card";
+		} else {
+			// Add new value to output text
+			OutputText.text = OutputText.text + this.GetComponentInChildren<Text> ().text.Replace ("\n", ",");
+		}
 		// Split the value of the TextOutput and store in array
 		string[] OutputTextArray = Regex.Split(OutputText.text, "\n");
 
 		// Delete old value
 		OutputText.text = "";
 
-		if (OutputTextArray.Length > 12) {
+		if (OutputTextArray.Length > 11) {
 			print (OutputTextArray.Length);
 			// Shift array so it looks like it's scrolling up
 			for (int i = 1; i < OutputTextArray.Length; i++) {
@@ -49,6 +57,11 @@ public class guiButton : MonoBehaviour {
 				OutputText.text = OutputText.text + OutputTextArray [i] + "\n";
 			}
 		}
+
+		// Discard the card you used
+		discardCard ();
+
+
 	}
 }
 
