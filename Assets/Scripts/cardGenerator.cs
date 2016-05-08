@@ -23,10 +23,11 @@ public class cardGenerator : MonoBehaviour {
 	UnityEngine.UI.Text GUICard3;
 	UnityEngine.UI.Text GUICard4;
 	UnityEngine.UI.Text GUICard5;
-	UnityEngine.UI.Text GUICard6;
 
+	UnityEngine.UI.Text OutputText;
 
-	
+	UnityEngine.UI.Button GUICardDraw;
+
 	// Use this for initialization
 	void Start () {
 
@@ -68,8 +69,6 @@ public class cardGenerator : MonoBehaviour {
 		GUICard4.text = generateCard ();
 		GUICard5 = GameObject.Find ("GUICard5Text").GetComponent<Text> ();
 		GUICard5.text = generateCard ();
-		GUICard6 = GameObject.Find ("GUICard6Text").GetComponent<Text> ();
-		GUICard6.text = generateCard ();
 	}
 
 	public string generateCard() {
@@ -96,6 +95,48 @@ public class cardGenerator : MonoBehaviour {
 		return entirecard;
 
 	}
+
+	
+	public void ClickRandomCard(){
+		
+	}
+	
+	public void ClickDrawCard(){
+		GUICard1 = GameObject.Find ("GUICard1Text").GetComponent<Text> ();
+		//GUICard1.text = generateCard ();
+		GUICard2 = GameObject.Find ("GUICard2Text").GetComponent<Text> ();
+		//GUICard2.text = generateCard ();
+		GUICard3 = GameObject.Find ("GUICard3Text").GetComponent<Text> ();
+		//GUICard3.text = generateCard ();
+		GUICard4 = GameObject.Find ("GUICard4Text").GetComponent<Text> ();
+		//GUICard4.text = generateCard ();
+		GUICard5 = GameObject.Find ("GUICard5Text").GetComponent<Text> ();
+		//GUICard5.text = generateCard ();
+		if (GUICard1.text == "") {
+			GUICard1.text = generateCard ();
+		} else if (GUICard2.text == "") {
+			GUICard2.text = generateCard ();
+		} else if (GUICard3.text == "") {
+			GUICard3.text = generateCard ();
+		} else if (GUICard4.text == "") {
+			GUICard4.text = generateCard ();
+		} else if (GUICard5.text == "") {
+			GUICard5.text = generateCard ();
+		} 
+		if (GUICard1.text != "" && GUICard2.text != "" && GUICard3.text != "" && GUICard4.text != "" && GUICard5.text != "") {
+			GUICardDraw = GameObject.Find ("GUICardDraw").GetComponent<Button> ();
+			GUICardDraw.interactable = false;
+		}
+	}
+
+
+
+
+
+
+
+
+
 
 
 

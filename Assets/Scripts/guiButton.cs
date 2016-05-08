@@ -6,6 +6,16 @@ using System.Text.RegularExpressions;
 public class guiButton : MonoBehaviour {
 
 	UnityEngine.UI.Text OutputText;
+	
+	// GUICARDS
+	UnityEngine.UI.Text GUICard1;
+	UnityEngine.UI.Text GUICard2;
+	UnityEngine.UI.Text GUICard3;
+	UnityEngine.UI.Text GUICard4;
+	UnityEngine.UI.Text GUICard5;
+
+	UnityEngine.UI.Button GUICardDraw;
+
 
 	public void ClickMenu() {
 		OutputText = GameObject.Find("OutputText").GetComponent<Text>();
@@ -24,8 +34,13 @@ public class guiButton : MonoBehaviour {
 	}
 
 	public void discardCard() {
-		this.GetComponentInChildren<Text> ().text = "";
+		if (this.GetComponentInChildren<Text> ().text != "Draw Card" && this.GetComponentInChildren<Text> ().text != "Play Random Card") {
+			GUICardDraw = GameObject.Find ("GUICardDraw").GetComponent<Button> ();
+			GUICardDraw.interactable = true;
+			this.GetComponentInChildren<Text> ().text = "";
+		}
 	}
+
 
 	public void ClickCard(){
 

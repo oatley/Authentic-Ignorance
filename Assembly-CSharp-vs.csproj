@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\controlMenuItem.cs" />
      <Compile Include="Assets\Scripts\guiButton.cs" />
      <Compile Include="Assets\Scripts\outputText.cs" />
+     <Compile Include="Assets\Scripts\runGame.cs" />
      <Compile Include="Assets\controlMouse.cs" />
      <None Include="Assets\Text\neutralwords.txt" />
      <None Include="Assets\Text\words.txt" />
