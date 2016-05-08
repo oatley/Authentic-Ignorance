@@ -114,9 +114,9 @@ public class cardGenerator : MonoBehaviour {
 		cardalignment = Random.Range (1, 4);
 		cardscore = Random.Range (0, 4);
 
-		print (neutral.Count.ToString());
-		print (bad.Count.ToString());
-		print (good.Count.ToString());
+//		print (neutral.Count.ToString()); //DEBUG CODE
+//		print (bad.Count.ToString());
+//		print (good.Count.ToString());
 		if (cardalignment == 1) { // good
 			string card = good [Random.Range (0, good.Count)]; // card name
 			entirecard = card + "\ngood\n" + goodvalues [cardscore].ToString (); // string = name alignment score

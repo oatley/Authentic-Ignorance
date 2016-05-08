@@ -57,10 +57,10 @@ public class guiButton : MonoBehaviour {
 			OutputText.text = OutputText.text + "please draw a new card";
 		} else if (this.GetComponentInChildren<Text> ().text == "Draw Card") {
 			// Add new value to output text
-			OutputText.text = OutputText.text + this.GetComponentInChildren<Text> ().text.Replace ("\n", ",");
+			OutputText.text = OutputText.text + "You - Draw Card";//this.GetComponentInChildren<Text> ().text.Replace ("\n", ",");
 		} else if (this.GetComponentInChildren<Text> ().text == "Discard Hand") {
 			// Add new value to output text
-			OutputText.text = OutputText.text + this.GetComponentInChildren<Text> ().text.Replace ("\n", ",");
+			OutputText.text = OutputText.text + "You - Discard Hand";//this.GetComponentInChildren<Text> ().text.Replace ("\n", ",");
 //		} else if (this.GetComponentInChildren<Text> ().text == "You Win!") {
 //				// Add new value to output text
 //				OutputText.text = OutputText.text + this.GetComponentInChildren<Text> ().text.Replace ("\n", ",");
@@ -69,10 +69,15 @@ public class guiButton : MonoBehaviour {
 //			OutputText.text = OutputText.text + this.GetComponentInChildren<Text> ().text.Replace ("\n", ",");
 		} else {
 			// Add new value to output text
-			OutputText.text = OutputText.text + this.GetComponentInChildren<Text> ().text.Replace ("\n", ",");
+			OutputText.text = OutputText.text + "You - " + this.GetComponentInChildren<Text> ().text.Replace ("\n", ",");
 			// Update player score
 			string[] CardInfo = Regex.Split(this.GetComponentInChildren<Text> ().text, "\n");
 			GameObject.Find ("runGameObject").GetComponent<runGame> ().ChangePlayerScore(int.Parse(CardInfo[2]));
+
+			if (CardInfo[1] == "bad") {
+				GameObject.Find ("runGameObject").GetComponent<runGame>().terribleThings.Add(CardInfo[0]);
+				GameObject.Find ("runGameObject").GetComponent<runGame>().UpdateAIText(CardInfo[0]);
+			}
 		}
 		// Split the value of the TextOutput and store in array
 		string[] OutputTextArray = Regex.Split(OutputText.text, "\n");
@@ -80,7 +85,7 @@ public class guiButton : MonoBehaviour {
 		// Delete old value
 		OutputText.text = "";
 
-		if (OutputTextArray.Length > 11) {
+		if (OutputTextArray.Length > 10) {
 			print (OutputTextArray.Length);
 			// Shift array so it looks like it's scrolling up
 			for (int i = 1; i < OutputTextArray.Length; i++) {
@@ -98,6 +103,8 @@ public class guiButton : MonoBehaviour {
 		discardCard ();
 		GameObject.Find ("runGameObject").GetComponent<runGame> ().checkWin ();
 		//enemyTurn ();
+		GameObject.Find ("Enemy").GetComponent<enemy> ().playCard ();
+
 
 	}
 
